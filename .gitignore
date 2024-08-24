@@ -1,0 +1,33 @@
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Pip & wheel
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+
+# macOS system files
+.DS_Store
+
+# Rodeo specific
+.rodeo.session
