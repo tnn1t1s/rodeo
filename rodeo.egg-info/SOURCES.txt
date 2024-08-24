@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+rodeo/__init__.py
+rodeo/__main__.py
+rodeo/chat.py
+rodeo/main.py
+rodeo/session_manager.py
+rodeo.egg-info/PKG-INFO
+rodeo.egg-info/SOURCES.txt
+rodeo.egg-info/dependency_links.txt
+rodeo.egg-info/entry_points.txt
+rodeo.egg-info/requires.txt
+rodeo.egg-info/top_level.txt
