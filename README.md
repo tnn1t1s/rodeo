@@ -71,22 +71,6 @@ $ ls -l | rodeo-cli "Summarize this directory listing. How many items are there,
 - Largest file (if apparent from the listing)
 - Most recent modification (if apparent from the listing)]
 
-3. Fetch and analyze financial market data:
-
-```
-$ curl -s https://finance.yahoo.com | rodeo-cli "Summarize the movements in Dow, NASDAQ, and Russell indexes based on this Yahoo Finance page. Only mention these three indexes and their percentage changes. $(cat)"
-
-[Rodeo's response might look like:
-Based on the Yahoo Finance data:
-
-1. Dow Jones Industrial Average (^DJI): [up/down] [X.XX%]
-2. NASDAQ Composite (^IXIC): [up/down] [X.XX%]
-3. Russell 2000 (^RUT): [up/down] [X.XX%]
-
-Overall market trend: [brief assessment]]
-```
-
-
 ## Options
 
 - `--session FILE`: Specify a custom session file (default: ~/.rodeo.session)
