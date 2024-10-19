@@ -7,7 +7,7 @@ from typing import List, Dict
 from src.rodeo.chat import Chat
 from src.rodeo.cli import process_command
 
-class TestCase:
+class RodeoTestCase:
     def __init__(self, prompt: str, expected_outcome: str, threshold: float = 0.7):
         self.prompt = prompt
         self.expected_outcome = expected_outcome
@@ -39,7 +39,7 @@ def evaluate_response(chat: Chat, prompt: str, actual_response: str, expected_ou
         print(f"Error parsing score: {score_response}")
         return 0
 
-def run_tests(test_cases: List[TestCase], session_file: str) -> Dict[str, Dict[str, float]]:
+def run_tests(test_cases: List[RodeoTestCase], session_file: str) -> Dict[str, Dict[str, float]]:
     chat = Chat(session_file)
     results = {}
     for i, test_case in enumerate(test_cases, 1):
@@ -57,16 +57,16 @@ def run_tests(test_cases: List[TestCase], session_file: str) -> Dict[str, Dict[s
 
 # Define test cases
 test_cases = [
-    TestCase(
+    RodeoTestCase(
         prompt="Summarize the key features of Python in 3 bullet points",
         expected_outcome="The response should include 3 bullet points highlighting key features of Python, such as readability, extensive libraries, and dynamic typing.",
     ),
-    TestCase(
+    RodeoTestCase(
         prompt="Translate 'Hello, how are you?' to French",
         expected_outcome="The response should be the French translation: 'Bonjour, comment allez-vous?'",
         threshold=0.8
     ),
-    TestCase(
+    RodeoTestCase(
         prompt="What is 15 * 24?",
         expected_outcome="The response should include the correct calculation: 360",
         threshold=0.9
