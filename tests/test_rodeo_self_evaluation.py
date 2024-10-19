@@ -55,6 +55,12 @@ def evaluate_rodeo_response(context, command, response):
     
     try:
         evaluation_json = json.loads(evaluation_result)
+        print(f"\n{'='*50}")
+        print(f"Test Case: {command}")
+        print(f"Context: {context}")
+        print(f"Response: {response}")
+        print(f"Result: {evaluation_result}")
+        print(f"{'='*50}")
         return evaluation_json
     except json.JSONDecodeError:
         return {"error": "Failed to parse evaluation result as JSON", "raw_result": evaluation_result}
