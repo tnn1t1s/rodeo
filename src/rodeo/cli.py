@@ -39,7 +39,7 @@ def main():
         input_text = sys.stdin.read().strip()
         command = "$(cat)"
     else:
-        print("Usage: rodeo-cli [--session FILE] 'Your prompt' or echo 'Your prompt' | rodeo-cli")
+        print("Usage: rodeo [--session FILE] 'Your prompt' or echo 'Your prompt' | rodeo")
         sys.exit(1)
 
     response = process_command(command, chat, input_text)
