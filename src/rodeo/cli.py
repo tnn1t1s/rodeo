@@ -2,6 +2,22 @@ import sys
 import argparse
 from rodeo.chat import Chat
 
+def process_command(command: str, chat: Chat, input_text: str = '') -> str:
+    """
+    Process a command using the Chat instance.
+    
+    :param command: The command or prompt to process
+    :param chat: An instance of the Chat class
+    :param input_text: Optional input text (e.g., from piped input)
+    :return: The response from the chat
+    """
+    if '$(cat)' in command and input_text:
+        full_command = command.replace('$(cat)', input_text)
+    else:
+        full_command = command
+
+    return chat.get_response(full_command)
+
 def main():
     parser = argparse.ArgumentParser(description="Rodeo CLI Chat")
     parser.add_argument("--session", default="~/.rodeo.session", help="Path to session file")
@@ -15,18 +31,19 @@ def main():
         chat.clear_session()
         print("Session cleared.")
         return
-    
+
     if args.prompt:
-        prompt = " ".join(args.prompt)
+        command = " ".join(args.prompt)
+        input_text = ''
     elif not sys.stdin.isatty():
-        prompt = sys.stdin.read().strip()
+        input_text = sys.stdin.read().strip()
+        command = "$(cat)"
     else:
         print("Usage: rodeo-cli [--session FILE] 'Your prompt' or echo 'Your prompt' | rodeo-cli")
         sys.exit(1)
 
-    if prompt:
-        response = chat.get_response(prompt)
-        print(response)
+    response = process_command(command, chat, input_text)
+    print(response)
 
 if __name__ == "__main__":
     main()
