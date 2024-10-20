@@ -1,15 +1,18 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="rodeo-cli",
+    name="rodeo",
     version="0.1",
-    packages=find_packages(),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     install_requires=[
         "requests",
+        "openai",
+        # other dependencies...
     ],
     entry_points={
         "console_scripts": [
-            "rodeo-cli=rodeo.main:main",
+            "rodeo=rodeo.cli:main",
         ],
     },
 )

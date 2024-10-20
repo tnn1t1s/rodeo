@@ -12,8 +12,20 @@ class Chat:
     def _load_session(self):
         if os.path.exists(self.session_file):
             with open(self.session_file, 'r') as f:
-                return json.load(f)
+                try:
+                    loaded_data = json.load(f)
+                    if self._validate_session_data(loaded_data):
+                        return loaded_data
+                    else:
+                        print("Warning: Session file is not in the expected format. Starting with an empty session.")
+                except json.JSONDecodeError:
+                    print("Warning: Session file is not valid JSON. Starting with an empty session.")
         return []
+
+    def _validate_session_data(self, data):
+        if not isinstance(data, list):
+            return False
+        return True
 
     def _save_session(self):
         with open(self.session_file, 'w') as f:
