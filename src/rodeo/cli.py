@@ -22,7 +22,6 @@ def main():
     parser = argparse.ArgumentParser(description="Rodeo CLI Chat")
     parser.add_argument("--session", default="~/.rodeo.session", help="Path to session file")
     parser.add_argument("--clear", action="store_true", help="Clear the session")
-    parser.add_argument("-e", "--exec", action="store_true", help="Execute the output as a command")
     parser.add_argument("prompt", nargs="*", help="Prompt for the chat")
     args = parser.parse_args()
 
@@ -42,9 +41,6 @@ def main():
     else:
         print("Usage: rodeo [--session FILE] 'Your prompt' or echo 'Your prompt' | rodeo")
         sys.exit(1)
-
-    if args.exec:
-        user_input = f"Generate executable shell command for: {user_input}"
 
     response = process_command(command, chat, input_text)
     print(response)
